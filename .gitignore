@@ -35,3 +35,8 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Personal learning / scratch notes (kept local, not shipped)
+LEARN.md
+NOTES.md
+TODO.local.md
