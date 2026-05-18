@@ -7,6 +7,33 @@ A FastAPI service that serves verified, fresh place data for AI agents — with
 geographic search, deduplication, source reconciliation, and graceful
 degradation when external sources fail.
 
+## Example response
+
+`POST /places/reconcile/place_009` on a place with 3 disagreeing sources:
+
+```json
+{
+  "place_id": "place_009",
+  "canonical": {
+    "name": "UB City Mall",
+    "phone": "+91-80-12345678",
+    "hours": "11:00-23:00",
+    "address": "Vittal Mallya Road, Bangalore"
+  },
+  "conflicts": [
+    {"field_name": "phone", "source_a": "google_places", "value_a": "+91-80-12345678",
+     "source_b": "yelp",    "value_b": "+91-80-87654321"},
+    {"field_name": "hours", "source_a": "google_places", "value_a": "11:00-23:00",
+     "source_b": "yelp",    "value_b": "10:00-22:00"}
+  ],
+  "confidence": "LOW",
+  "needs_escalation": true
+}
+```
+
+Canonical values picked by source priority (`google_places` > `yelp` > `scraper`).
+Every disagreement is logged so consuming agents can hedge their answers.
+
 ## The Problem This Solves
 
 AI agents querying real-world location data face three problems:
@@ -187,6 +214,15 @@ pip install -r requirements.lock.txt
 
 ### Quick smoke test
 
+For a one-shot walkthrough of every endpoint with formatted output, run the
+bundled script (server must be up):
+
+```bash
+python scripts/try_api.py
+```
+
+Or hit individual endpoints with curl:
+
 ```bash
 curl http://localhost:8000/health
 curl "http://localhost:8000/places?limit=5"
@@ -199,30 +235,55 @@ curl -X POST http://localhost:8000/places/reconcile/place_009
 ## Testing
 
 ```bash
-pytest
+pytest          # 39 tests, ~1 second
+pytest -v       # show every test name
+pytest -k geo   # match by substring
 ```
 
 **39 tests** covering geographic computation, deduplication logic, source
 reconciliation, staleness detection, and API contracts. Each test runs
-against an isolated SQLite database (`tests/conftest.py`).
+against an isolated SQLite database via the `isolated_db` fixture in
+`tests/conftest.py` — tests never touch your real `places.db`.
+
+## Continuous Integration
+
+GitHub Actions runs the full pytest suite on every push and PR across
+**Python 3.11, 3.12, and 3.13**. The workflow lives in
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml); the green badge
+at the top of this README links to the latest run.
 
 ## Project Structure
 
 ```
 place-data-service/
 ├── data/
-│   ├── seed_places.json           50 Bangalore places
-│   └── conflicting_sources.json   15 places with multi-source conflicts
+│   ├── seed_places.json              50 Bangalore places
+│   └── conflicting_sources.json      15 places with multi-source conflicts
 ├── src/
-│   ├── main.py                    FastAPI app
-│   ├── models.py                  Pydantic models
-│   ├── database.py                SQLite setup + queries
-│   ├── geo.py                     Haversine + bounding-box helpers
-│   ├── dedup.py                   Two-stage deduplication
-│   ├── reconcile.py               Source reconciliation
-│   ├── staleness.py               Staleness scoring
-│   └── seed.py                    Load seed data
-└── tests/                         pytest suite (39 tests)
+│   ├── main.py                       FastAPI app + routes
+│   ├── models.py                     Pydantic request/response schemas
+│   ├── database.py                   SQLite schema + batched queries
+│   ├── geo.py                        Haversine + bounding-box helpers
+│   ├── dedup.py                      Two-stage deduplication
+│   ├── reconcile.py                  Source reconciliation
+│   ├── staleness.py                  Staleness scoring
+│   └── seed.py                       Loads data/*.json into the DB
+├── tests/                            pytest suite (39 tests)
+│   ├── conftest.py                   Isolated-DB and seed fixtures
+│   └── test_*.py                     One file per src module
+├── scripts/
+│   └── try_api.py                    Endpoint walk-through script
+├── .github/
+│   ├── workflows/ci.yml              Test matrix on push/PR
+│   ├── ISSUE_TEMPLATE/               Bug + feature templates
+│   └── pull_request_template.md
+├── Dockerfile + .dockerignore        Multi-stage build, non-root user
+├── Makefile                          install / seed / run / test / docker-*
+├── pyproject.toml                    Project metadata, pytest + pyright config
+├── requirements.txt                  Loose deps for development
+├── requirements.lock.txt             Pinned versions for reproducible builds
+├── README.md                         This file
+└── CONTRIBUTING.md                   Setup, conventions, design principles
 ```
 
 ## Configuration
@@ -236,5 +297,3 @@ place-data-service/
 See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and the PR
 checklist. Bug reports and feature requests use the templates under
 `.github/ISSUE_TEMPLATE/`.
-
-
