@@ -141,6 +141,19 @@ deployment would need:
 
 ## Running Locally
 
+### Option A: with Make (one-liner setup)
+
+```bash
+make install   # creates venv, installs deps
+make seed      # loads 50 Bangalore places into places.db
+make run       # starts the dev server on :8000
+make test      # runs the full pytest suite
+```
+
+`make help` lists every target.
+
+### Option B: raw commands
+
 ```bash
 python -m venv venv
 # Windows
@@ -153,7 +166,25 @@ python -m src.seed
 uvicorn src.main:app --reload
 ```
 
+### Option C: Docker (no Python needed)
+
+```bash
+docker build -t place-data-service .
+docker run --rm -p 8000:8000 place-data-service
+```
+
+The image seeds the DB on first boot and runs the API on port 8000.
+
 Open <http://localhost:8000/docs> for interactive API docs.
+
+### Reproducible builds
+
+`requirements.txt` uses `>=` for flexibility. For exact reproducibility,
+install from the lock file:
+
+```bash
+pip install -r requirements.lock.txt
+```
 
 ### Quick smoke test
 
@@ -200,3 +231,13 @@ place-data-service/
 | Env var          | Default       | Purpose                                  |
 | ---------------- | ------------- | ---------------------------------------- |
 | `PLACE_DB_PATH`  | `./places.db` | SQLite database path (tests override it) |
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and the PR
+checklist. Bug reports and feature requests use the templates under
+`.github/ISSUE_TEMPLATE/`.
+
+## License
+
+[MIT](LICENSE) — © 2026 Vineet Vudnur.
