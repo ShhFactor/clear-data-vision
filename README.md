@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/id-fant/place-data-service/actions/workflows/ci.yml/badge.svg)](https://github.com/id-fant/place-data-service/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A FastAPI service that serves verified, fresh place data for AI agents — with
 geographic search, deduplication, source reconciliation, and graceful
@@ -238,6 +237,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and the PR
 checklist. Bug reports and feature requests use the templates under
 `.github/ISSUE_TEMPLATE/`.
 
-## License
 
-[MIT](LICENSE) — © 2026 Vineet Vudnur.

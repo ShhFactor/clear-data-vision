@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Geospatial API for AI agents querying real-world place data — with deduplication, source reconciliation, staleness detection, and confidence scoring."
 readme = "README.md"
 requires-python = ">=3.11"
-license = { file = "LICENSE" }
 authors = [{ name = "Vineet Vudnur", email = "vineetvudnur81@gmail.com" }]
 keywords = ["fastapi", "geospatial", "place-data", "ai-agents", "deduplication"]
 classifiers = [
@@ -13,7 +12,6 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Framework :: FastAPI",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
