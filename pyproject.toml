@@ -1,0 +1,49 @@
+[project]
+name = "place-data-service"
+version = "0.1.0"
+description = "Geospatial API for AI agents querying real-world place data — with deduplication, source reconciliation, staleness detection, and confidence scoring."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Vineet Vudnur", email = "vineetvudnur81@gmail.com" }]
+keywords = ["fastapi", "geospatial", "place-data", "ai-agents", "deduplication"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: FastAPI",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "pydantic>=2.5",
+    "rapidfuzz>=3.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "httpx>=0.27",
+]
+
+[project.urls]
+Repository = "https://github.com/id-fant/place-data-service"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+
+[tool.pyright]
+venvPath = "."
+venv = "venv"
+pythonVersion = "3.13"
+extraPaths = ["."]
+include = ["src", "tests"]
+exclude = ["venv", "**/__pycache__"]
+reportMissingImports = "warning"

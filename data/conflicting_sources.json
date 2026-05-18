@@ -1,0 +1,118 @@
+[
+  {
+    "place_id": "place_001",
+    "sources": {
+      "google_places": {"name": "Pasta Vino", "lat": 12.9716, "lng": 77.5946, "address": "MG Road, Bangalore", "hours": "11:00-22:00"},
+      "yelp": {"name": "Pasta Vino Restaurant", "lat": 12.9717, "lng": 77.5945, "address": "MG Rd, Bangalore", "hours": "11:00-22:00"},
+      "scraper": {"name": "PASTA VINO", "lat": 12.9716, "lng": 77.5947, "address": "Mahatma Gandhi Road, Bangalore", "hours": "11:00-22:00"}
+    }
+  },
+  {
+    "place_id": "place_002",
+    "sources": {
+      "google_places": {"name": "Indian Coffee House", "lat": 12.9784, "lng": 77.6408, "address": "Church Street, Bangalore", "hours": "08:00-21:00"},
+      "yelp": {"name": "Indian Coffee House", "lat": 12.9785, "lng": 77.6409, "address": "Church St, Bangalore", "hours": "08:00-21:00"}
+    }
+  },
+  {
+    "place_id": "place_003",
+    "sources": {
+      "google_places": {"name": "MTR 1924", "lat": 12.9438, "lng": 77.5728, "address": "Lalbagh Road, Bangalore", "hours": "06:30-22:30"},
+      "yelp": {"name": "Mavalli Tiffin Room", "lat": 12.9438, "lng": 77.5728, "address": "14 Lalbagh Road, Bangalore", "hours": "06:30-22:30"},
+      "scraper": {"name": "MTR", "lat": 12.9437, "lng": 77.5729, "address": "Lalbagh Rd, Bangalore", "hours": "06:30-22:30"}
+    }
+  },
+  {
+    "place_id": "place_004",
+    "sources": {
+      "google_places": {"name": "Mainland China", "lat": 12.9762, "lng": 77.6033, "address": "Brigade Road, Bangalore", "hours": "12:00-23:00"},
+      "yelp": {"name": "Mainland China", "lat": 12.9762, "lng": 77.6033, "address": "Brigade Rd, Bangalore", "hours": "12:00-23:00"}
+    }
+  },
+  {
+    "place_id": "place_005",
+    "sources": {
+      "google_places": {"name": "Third Wave Coffee", "lat": 12.9352, "lng": 77.6245, "address": "Koramangala 5th Block, Bangalore", "hours": "07:00-22:00"},
+      "yelp": {"name": "Third Wave Coffee Roasters", "lat": 12.9353, "lng": 77.6246, "address": "Koramangala, Bangalore", "hours": "07:30-22:00"},
+      "scraper": {"name": "3rd Wave Coffee", "lat": 12.9352, "lng": 77.6244, "address": "5th Block Koramangala, Bangalore", "hours": "07:00-22:30"}
+    }
+  },
+  {
+    "place_id": "place_006",
+    "sources": {
+      "google_places": {"name": "Blossom Book House", "lat": 12.9759, "lng": 77.6097, "address": "Church Street, Bangalore", "hours": "10:30-21:00"},
+      "yelp": {"name": "Blossom Book House", "lat": 12.9759, "lng": 77.6097, "address": "Church Street, Bangalore", "hours": "10:30-21:00"},
+      "scraper": {"name": "Blossoms Book House", "lat": 12.9760, "lng": 77.6098, "address": "84/6 Church Street, Bangalore", "hours": "10:30-21:00"}
+    }
+  },
+  {
+    "place_id": "place_007",
+    "sources": {
+      "google_places": {"name": "Cubbon Park", "lat": 12.9763, "lng": 77.5929, "address": "Kasturba Road, Bangalore", "hours": "06:00-18:00"},
+      "yelp": {"name": "Cubbon Park", "lat": 12.9763, "lng": 77.5929, "address": "Kasturba Rd, Bangalore", "hours": "06:00-19:00"}
+    }
+  },
+  {
+    "place_id": "place_009",
+    "sources": {
+      "google_places": {"name": "UB City Mall", "lat": 12.9719, "lng": 77.5957, "address": "Vittal Mallya Road, Bangalore", "hours": "11:00-23:00", "phone": "+91-80-12345678"},
+      "yelp": {"name": "UB City Mall", "lat": 12.9718, "lng": 77.5958, "address": "24 Vittal Mallya Rd, Bangalore", "hours": "10:00-22:00", "phone": "+91-80-87654321"},
+      "scraper": {"name": "UB City", "lat": 12.9720, "lng": 77.5956, "address": "Vittal Mallya Road, Bangalore", "hours": "11:00-22:00", "phone": "+91-80-11112222"}
+    }
+  },
+  {
+    "place_id": "place_011",
+    "sources": {
+      "google_places": {"name": "Truffles", "lat": 12.9352, "lng": 77.6146, "address": "Koramangala, Bangalore", "hours": "11:00-23:30"},
+      "yelp": {"name": "Truffles", "lat": 12.9352, "lng": 77.6146, "address": "80 Feet Road, Koramangala, Bangalore", "hours": "11:00-23:30"},
+      "scraper": {"name": "Truffles Koramangala", "lat": 12.9353, "lng": 77.6147, "address": "Koramangala 4th Block, Bangalore", "hours": "11:00-23:30"}
+    }
+  },
+  {
+    "place_id": "place_012",
+    "sources": {
+      "google_places": {"name": "Vidyarthi Bhavan", "lat": 12.9416, "lng": 77.5712, "address": "Gandhi Bazaar, Basavanagudi, Bangalore", "hours": "06:30-11:30,14:00-20:00"},
+      "yelp": {"name": "Vidyarthi Bhavan", "lat": 12.9415, "lng": 77.5711, "address": "Gandhi Bazaar Main Road, Bangalore", "hours": "06:30-11:30,14:00-20:00"}
+    }
+  },
+  {
+    "place_id": "place_015",
+    "sources": {
+      "google_places": {"name": "Cafe Coffee Day", "lat": 12.9786, "lng": 77.6411, "address": "Brigade Road, Bangalore", "hours": "09:00-23:00", "phone": "+91-80-22334455"},
+      "yelp": {"name": "Cafe Coffee Day - Brigade Road", "lat": 12.9787, "lng": 77.6410, "address": "Brigade Rd, Bangalore", "hours": "08:30-23:30", "phone": "+91-80-99887766"},
+      "scraper": {"name": "CCD Brigade", "lat": 12.9786, "lng": 77.6412, "address": "Brigade Rd Bangalore", "hours": "10:00-22:00", "phone": "+91-80-11223344"}
+    }
+  },
+  {
+    "place_id": "place_017",
+    "sources": {
+      "google_places": {"name": "Higginbothams", "lat": 12.9774, "lng": 77.6051, "address": "MG Road, Bangalore", "hours": "09:30-20:30", "phone": "+91-80-25584653"},
+      "yelp": {"name": "Higginbothams Bookstore", "lat": 12.9775, "lng": 77.6050, "address": "68 MG Road, Bangalore", "hours": "10:00-21:00", "phone": "+91-80-25584000"},
+      "scraper": {"name": "HIGGINBOTHAMS", "lat": 12.9773, "lng": 77.6052, "address": "Mahatma Gandhi Road, Bangalore", "hours": "09:30-20:30", "phone": "+91-80-99990000"}
+    }
+  },
+  {
+    "place_id": "place_020",
+    "sources": {
+      "google_places": {"name": "Orion Mall", "lat": 13.0107, "lng": 77.5544, "address": "Rajajinagar, Bangalore", "hours": "10:00-22:00", "phone": "+91-80-44222000"},
+      "yelp": {"name": "Orion Mall Brigade Gateway", "lat": 13.0108, "lng": 77.5545, "address": "Brigade Gateway, Rajajinagar, Bangalore", "hours": "11:00-21:00", "phone": "+91-80-44111000"},
+      "scraper": {"name": "Orion", "lat": 13.0106, "lng": 77.5543, "address": "Dr. Rajkumar Rd, Rajajinagar, Bangalore", "hours": "09:00-23:00", "phone": "+91-80-44000000"}
+    }
+  },
+  {
+    "place_id": "place_023",
+    "sources": {
+      "google_places": {"name": "Empire Restaurant", "lat": 12.9719, "lng": 77.6080, "address": "Brigade Road, Bangalore", "hours": "11:00-01:00"},
+      "yelp": {"name": "Empire", "lat": 12.9720, "lng": 77.6081, "address": "Brigade Rd, Bangalore", "hours": "11:00-01:00"},
+      "scraper": {"name": "Hotel Empire", "lat": 12.9719, "lng": 77.6079, "address": "Brigade Road Bangalore", "hours": "11:00-01:00"}
+    }
+  },
+  {
+    "place_id": "place_033",
+    "sources": {
+      "google_places": {"name": "Forum Mall", "lat": 12.9347, "lng": 77.6118, "address": "Koramangala, Bangalore", "hours": "10:00-22:00", "phone": "+91-80-25503000"},
+      "yelp": {"name": "The Forum", "lat": 12.9346, "lng": 77.6119, "address": "Hosur Road, Koramangala, Bangalore", "hours": "11:00-23:00", "phone": "+91-80-25503001"},
+      "scraper": {"name": "Forum Koramangala", "lat": 12.9348, "lng": 77.6117, "address": "21 Hosur Rd, Koramangala, Bangalore", "hours": "09:00-21:00", "phone": "+91-80-25503999"}
+    }
+  }
+]
