@@ -18,6 +18,7 @@ from src.database import (
     list_all_places,
     list_places,
     list_places_in_bbox,
+    update_confidence,
 )
 from src.dedup import find_duplicate_groups
 from src.geo import bounding_box, haversine_km
@@ -53,18 +54,17 @@ app = FastAPI(
 
 
 def _to_place_model(row: dict) -> Place:
-    return Place(
-        id=row["id"],
-        canonical_name=row["canonical_name"],
-        lat=row["lat"],
-        lng=row["lng"],
-        address=row.get("address"),
-        category=row.get("category"),
-        confidence=row.get("confidence", "MEDIUM"),
-        last_verified=row["last_verified"],
-        sources=row.get("sources", []),
-        conflicts=row.get("conflicts", []),
-    )
+    """Convert a hydrated DB row into the API's Place model.
+
+    Pydantic v2 ignores extra keys by default, so columns like `created_at`
+    that aren't on the model just drop. `sources` and `conflicts` come from
+    `_hydrate_many`; absent for some test rows, defaulted to empty lists.
+    """
+    return Place.model_validate({
+        "sources": [],
+        "conflicts": [],
+        **row,
+    })
 
 
 @app.get("/health", response_model=HealthResponse)
@@ -158,10 +158,7 @@ def post_reconcile(place_id: str):
         clear_conflicts(conn, place_id)
         for c in result.get("conflicts", []):
             insert_conflict(conn, place_id, c)
-        conn.execute(
-            "UPDATE places SET confidence = ? WHERE id = ?",
-            (result["confidence"], place_id),
-        )
+        update_confidence(conn, place_id, result["confidence"])
 
     return ReconcileResponse(
         place_id=place_id,

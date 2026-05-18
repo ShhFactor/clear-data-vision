@@ -92,18 +92,24 @@ def reconcile_sources(sources: dict) -> dict:
 
 
 def compute_confidence(sources: dict, conflicts: list) -> Confidence:
-    """Confidence reflects both source agreement and source count."""
+    """Confidence reflects both source agreement and source count.
+
+    HIGH:   3+ sources, no disagreement
+    LOW:    no sources, OR many conflicts (>5), OR 2+ sources with 3-5 conflicts
+    MEDIUM: single source, OR 2+ sources with ≤2 conflicts
+    """
     n_sources = len(sources)
     n_conflicts = len(conflicts)
+
+    if n_sources == 0:
+        return "LOW"
     if n_sources >= 3 and n_conflicts == 0:
         return "HIGH"
     if n_conflicts > 5:
         return "LOW"
-    if n_sources >= 2 and n_conflicts <= 2:
-        return "MEDIUM"
-    if n_sources == 1:
-        return "MEDIUM"
-    return "LOW"
+    if n_sources >= 2 and n_conflicts >= 3:
+        return "LOW"
+    return "MEDIUM"
 
 
 def reconcile_with_fallback(sources: dict) -> dict:

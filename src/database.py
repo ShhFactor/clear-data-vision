@@ -1,10 +1,11 @@
 import json
 import os
 import sqlite3
+from collections.abc import Generator
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterator, Optional
+from typing import Optional
 
 DEFAULT_DB_PATH = Path(__file__).resolve().parent.parent / "places.db"
 
@@ -57,7 +58,7 @@ def get_db_path() -> Path:
 
 
 @contextmanager
-def get_conn(db_path: Optional[Path] = None) -> Iterator[sqlite3.Connection]:
+def get_conn(db_path: Optional[Path] = None) -> Generator[sqlite3.Connection, None, None]:
     path = db_path or get_db_path()
     conn = sqlite3.connect(path, check_same_thread=False)
     conn.row_factory = sqlite3.Row
@@ -180,6 +181,30 @@ def fetch_conflicts(conn: sqlite3.Connection, place_id: str) -> list[dict]:
 
 def clear_conflicts(conn: sqlite3.Connection, place_id: str) -> None:
     conn.execute("DELETE FROM conflicts WHERE place_id = ?", (place_id,))
+
+
+def update_confidence(conn: sqlite3.Connection, place_id: str, confidence: str) -> None:
+    """Update the confidence level for a place after reconciliation."""
+    conn.execute(
+        "UPDATE places SET confidence = ? WHERE id = ?",
+        (confidence, place_id),
+    )
+
+
+def delete_sources_for(
+    conn: sqlite3.Connection,
+    place_id: str,
+    source_names: list[str],
+) -> None:
+    """Delete records for the named sources of a place. Used before reseeding
+    with a richer payload from conflicting_sources.json."""
+    if not source_names:
+        return
+    placeholders = ",".join("?" * len(source_names))
+    conn.execute(
+        f"DELETE FROM place_sources WHERE place_id = ? AND source_name IN ({placeholders})",
+        [place_id, *source_names],
+    )
 
 
 def list_places(conn: sqlite3.Connection, limit: int = 20, offset: int = 0) -> list[dict]:

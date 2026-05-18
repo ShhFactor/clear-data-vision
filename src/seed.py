@@ -9,10 +9,12 @@ import json
 from pathlib import Path
 
 from src.database import (
+    delete_sources_for,
     get_conn,
     init_db,
     insert_conflict,
     insert_source,
+    update_confidence,
     upsert_place,
 )
 from src.reconcile import reconcile_sources
@@ -57,26 +59,16 @@ def seed_conflicts() -> int:
         for entry in conflicting:
             place_id = entry["place_id"]
             sources = entry["sources"]
-            # Replace any pre-existing records for these sources so the
-            # conflicting_sources.json richer dataset (with phone/hours) wins.
-            conn.execute(
-                "DELETE FROM place_sources WHERE place_id = ? AND source_name IN ({})".format(
-                    ",".join("?" * len(sources))
-                ),
-                [place_id, *sources.keys()],
-            )
+            # Replace pre-existing records so the richer conflicting_sources
+            # payload (with phone/hours) wins over the bare seed_places entry.
+            delete_sources_for(conn, place_id, list(sources.keys()))
             for source_name, source_data in sources.items():
                 insert_source(conn, place_id, source_name, source_data)
 
-            # Reconcile + persist conflicts
             result = reconcile_sources(sources)
             for c in result["conflicts"]:
                 insert_conflict(conn, place_id, c)
-            # Update confidence on the place record based on reconciliation
-            conn.execute(
-                "UPDATE places SET confidence = ? WHERE id = ?",
-                (result["confidence"], place_id),
-            )
+            update_confidence(conn, place_id, result["confidence"])
     return len(conflicting)
 
 
