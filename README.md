@@ -291,8 +291,7 @@ place-data-service/
 | ---------------- | ------------- | ---------------------------------------- |
 | `PLACE_DB_PATH`  | `./places.db` | SQLite database path (tests override it) |
 
-## Contributing
+## Reporting issues
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and the PR
-checklist. Bug reports and feature requests use the templates under
+Bug reports and feature requests use the templates under
 `.github/ISSUE_TEMPLATE/`.
