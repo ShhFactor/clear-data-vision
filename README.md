@@ -282,8 +282,7 @@ place-data-service/
 ├── pyproject.toml                    Project metadata, pytest + pyright config
 ├── requirements.txt                  Loose deps for development
 ├── requirements.lock.txt             Pinned versions for reproducible builds
-├── README.md                         This file
-└── CONTRIBUTING.md                   Setup, conventions, design principles
+└── README.md                         This file
 ```
 
 ## Configuration
@@ -292,4 +291,8 @@ place-data-service/
 | ---------------- | ------------- | ---------------------------------------- |
 | `PLACE_DB_PATH`  | `./places.db` | SQLite database path (tests override it) |
 
+## Contributing
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and the PR
+checklist. Bug reports and feature requests use the templates under
+`.github/ISSUE_TEMPLATE/`.
