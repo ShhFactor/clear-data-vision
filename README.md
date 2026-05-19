@@ -7,6 +7,10 @@ A FastAPI service that serves verified, fresh place data for AI agents — with
 geographic search, deduplication, source reconciliation, and graceful
 degradation when external sources fail.
 
+## Demo Video 
+
+https://github.com/user-attachments/assets/d0b82546-8634-40d7-bea5-71977e3d74c5
+
 ## Example response
 
 `POST /places/reconcile/place_009` on a place with 3 disagreeing sources:
