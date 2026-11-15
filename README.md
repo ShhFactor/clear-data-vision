@@ -1,6 +1,6 @@
 # Place Data Service
 
-[![CI](https://github.com/id-fant/place-data-service/actions/workflows/ci.yml/badge.svg)](https://github.com/id-fant/place-data-service/actions/workflows/ci.yml)
+[![CI](https://github.com/ShhFactor/clear-data-vision/actions/workflows/ci.yml/badge.svg)](https://github.com/ShhFactor/clear-data-vision/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
 A FastAPI service that serves verified, fresh place data for AI agents — with
